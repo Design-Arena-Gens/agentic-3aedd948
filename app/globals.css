@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 55%),
+    #020617;
+}
+
+.gridlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, rgba(255, 255, 255, 0.03) 95%),
+    linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.03) 95%);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle, black 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.noise {
+  position: absolute;
+  inset: -200%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  animation: drift 18s linear infinite;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(10%, -10%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
